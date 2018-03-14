@@ -4,7 +4,7 @@
       <div class="swp-page swiper-slide" v-for="list in lists">
         <a class="js-no-follow" :href="list.clickUrl">
           <img class="goods-main-photo fadeIn"
-               :src="list.imgUrl">
+               :src="list.image">
         </a>
       </div>
     </div>

@@ -38,7 +38,8 @@ let app = new Vue({
         pageNum: this.pageNum,
         pageSize: this.pageSize
       }).then((res) => {
-        let currentLists = res.data[0].lists
+        let currentLists = res.data.list
+
         //判断数据是否加载完毕
         if (currentLists.length < this.pageSize) {
           this.allLoaded = true
@@ -48,7 +49,7 @@ let app = new Vue({
           this.lists = this.lists.concat(currentLists)
         } else {
           // 初次请求
-          this.lists = res.data[0].lists
+          this.lists = res.data.list
         }
         this.loading = false
         this.pageNum++
@@ -56,8 +57,7 @@ let app = new Vue({
     },
     getBanner() {
       axios.get(url.banner).then(res => {
-        this.bannerLists = res.data[0].lists
-        console.log(this.bannerLists)
+        this.bannerLists = res.data.lists
       })
     }
   },

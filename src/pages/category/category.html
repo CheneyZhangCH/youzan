@@ -93,7 +93,7 @@
                         </div>
                         <div class="detail">
                           <div class="title">{{hotGood.name}}</div>
-                          <div class="price">￥{{hotGood.price | formatCurrency}}</div>
+                          <div class="price">￥{{hotGood.price | currency}}</div>
                           <div class="recommend">
                             <span>推荐值:</span>
                             <span>{{hotGood.recommend}}</span>
@@ -145,7 +145,8 @@
                 <li v-for="list in subData.brandList"
                     class="category-item js-category-item"
                     :data-item-id="list.id"
-                    :data-item-name="list.name">
+                    :data-item-name="list.name"
+                    @click="toSearch(list)">
                   <img
                     :src="list.image"
                     :alt="list.name" class="category-img">
@@ -157,7 +158,8 @@
                 <li v-for="list in subData.categoryList"
                     class="category-item js-category-item"
                     :data-item-id="list.id"
-                    :data-item-name="list.name">
+                    :data-item-name="list.name"
+                    @click="toSearch(list)">
                   <img
                     :src="list.image"
                     :alt="list.name" class="category-img">

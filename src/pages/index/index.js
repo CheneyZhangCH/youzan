@@ -5,9 +5,12 @@ import Vue from 'vue'
 import axios from 'axios'
 import url from 'js/api.js'
 
+// import Foot from 'components/Foot.vue'
 
-import Foot from 'components/Foot.vue'
 import Swiper from 'components/Swiper.vue'
+
+import mixin from 'js/mixin.js'
+
 
 import {InfiniteScroll} from 'mint-ui';
 
@@ -62,7 +65,8 @@ let app = new Vue({
     }
   },
   components: {
-    Foot,
+    // Foot,
     Swiper
   },
+  mixins: [mixin]
 })

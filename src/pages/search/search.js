@@ -17,16 +17,42 @@ new Vue({
   data: {
     searchList: null,
     keyword,
-    isShow: false
+    isShow: false,
+    pageNum: 1,
+    pageSize: 8,
+    loading: false,
+    allLoaded: false,
   },
   created() {
     this.getSearchList()
   },
   methods: {
     getSearchList() {
-      axios.post(url.searchList, {keyword, id}).then(res => {
-        this.searchList = res.data.lists
+      if (this.allLoaded) {
+        return
+      }
+      this.loading = true
+      axios.post(url.searchList, {
+        pageNum: this.pageNum,
+        pageSize: this.pageSize
+      }).then((res) => {
+        let currentLists = res.data.lists
+
+        //判断数据是否加载完毕
+        if (currentLists.length < this.pageSize) {
+          this.allLoaded = true
+        }
+        if (this.searchList) {
+          // 已有数据再次请求
+          this.searchList = this.searchList.concat(currentLists)
+        } else {
+          // 初次请求
+          this.searchList = res.data.lists
+        }
+        this.loading = false
+        this.pageNum++
       })
+
     },
     move() {
       //  此处document.body.scrollTop 一直为0
@@ -41,7 +67,10 @@ new Vue({
       } else {
         this.isShow = false
       }
+      this.getSearchList()
+
     },
+
     toTop() {
       Velocity(document.body, 'scroll', {duration: 1000})
     }

@@ -83,20 +83,20 @@
                     <a href="https://maijia.youzan.com/mars/rank/hotgoods" class="pull-right icon-right">更多</a>
                   </div>
                   <ul>
-                    <li class="goods-item" v-for="(hotGood, index) in rankData.hotGoods">
+                    <li class="goods-item" v-for="(list, index) in rankData.hotGoods">
                       <a
-                        href="www.bilibili.com">
+                        :href="'/goods.html?id='+list.id">
                         <div class="thumb badge center-img">
                           <img
-                            :src="hotGood.image">
+                            :src="list.image">
                           <span class="num">{{index+1}}</span>
                         </div>
                         <div class="detail">
-                          <div class="title">{{hotGood.name}}</div>
-                          <div class="price">￥{{hotGood.price | currency}}</div>
+                          <div class="title">{{list.name}}</div>
+                          <div class="price">￥{{list.price | currency}}</div>
                           <div class="recommend">
                             <span>推荐值:</span>
-                            <span>{{hotGood.recommend}}</span>
+                            <span>{{list.recommend}}</span>
                           </div>
                         </div>
                       </a>

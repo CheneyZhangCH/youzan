@@ -71,7 +71,7 @@ new Vue({
       }
     },
     addChart() {
-      axios.post(url.addChart, {
+      axios.post(url.cartAdd, {
         id,
         number: this.skuNum
       }).then(res => {

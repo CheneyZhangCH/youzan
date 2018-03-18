@@ -7,7 +7,12 @@ let url = {
   searchList: '/search/list',
   details: '/goods/details',
   deal: '/goods/deal',
-  addChart: '/cart/add',
+  cartAdd: '/cart/add',
+  cartAdd: 'cart/add',
+  cartLists: '/cart/list',
+  cartReduce: '/cart/reduce',
+  cartRemove: '/cart/remove',
+  cartMRemove: '/cart/mremove'
 }
 
 let host = "http://rapapi.org/mockjsdata/32382"

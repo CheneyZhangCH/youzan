@@ -130,8 +130,8 @@
   clear: both
 }
 
-.account-form .action-links>a,
-.account-form .action-links>span {
+.account-form .action-links > a,
+.account-form .action-links > span {
   padding: 6px 0;
   margin-left: 5px;
   display: inline-block;
@@ -339,21 +339,21 @@
   font-size: 0
 }
 
-.action-container>div {
+.action-container > div {
   margin-bottom: 0
 }
 
-.action-container>div:last-child {
+.action-container > div:last-child {
   margin-bottom: 0
 }
 
-.action-container>button,
-.action-container>.btn {
+.action-container > button,
+.action-container > .btn {
   margin-bottom: 10px
 }
 
-.action-container>button:last-child,
-.action-container>.btn:last-child {
+.action-container > button:last-child,
+.action-container > .btn:last-child {
   margin-bottom: 0
 }
 
@@ -390,7 +390,7 @@
   border-top-width: 0px
 }
 
-.form>.block-item:first-child {
+.form > .block-item:first-child {
   border-top: 0px none
 }
 
@@ -454,9 +454,7 @@
   border-bottom: 2px solid #e5e5e5
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .tabber {
     border-top-width: 1px;
     border-bottom-width: 1px
@@ -748,7 +746,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
   color: #333
 }
 
-.bottom-fix .bottom-cart>div {
+.bottom-fix .bottom-cart > div {
   height: 50px;
   line-height: 50px;
   font-size: 14px
@@ -873,9 +871,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
   border-bottom: 2px solid #e5e5e5
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .tabber.tabber-double-11 a {
     border-bottom-width: 1px
   }
@@ -1034,21 +1030,21 @@ only screen and (min-device-pixel-ratio: 1.5) {
   font-size: 0
 }
 
-.action-container>div {
+.action-container > div {
   margin-bottom: 0
 }
 
-.action-container>div:last-child {
+.action-container > div:last-child {
   margin-bottom: 0
 }
 
-.action-container>button,
-.action-container>.btn {
+.action-container > button,
+.action-container > .btn {
   margin-bottom: 10px
 }
 
-.action-container>button:last-child,
-.action-container>.btn:last-child {
+.action-container > button:last-child,
+.action-container > .btn:last-child {
   margin-bottom: 0
 }
 
@@ -1138,21 +1134,21 @@ only screen and (min-device-pixel-ratio: 1.5) {
   font-size: 0
 }
 
-.action-container>div {
+.action-container > div {
   margin-bottom: 0
 }
 
-.action-container>div:last-child {
+.action-container > div:last-child {
   margin-bottom: 0
 }
 
-.action-container>button,
-.action-container>.btn {
+.action-container > button,
+.action-container > .btn {
   margin-bottom: 10px
 }
 
-.action-container>button:last-child,
-.action-container>.btn:last-child {
+.action-container > button:last-child,
+.action-container > .btn:last-child {
   margin-bottom: 0
 }
 
@@ -1165,9 +1161,7 @@ only screen and (min-device-pixel-ratio: 1.5) {
   border-bottom: 2px solid #e5e5e5
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .popout-box .header {
     border-bottom-width: 1px
   }
@@ -1336,9 +1330,7 @@ body.has-bottom-nav {
   border-top: 2px solid #e5e5e5
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .mj-bottom-nav {
     border-top-width: 1px
   }
@@ -1645,9 +1637,7 @@ body.body-fixed-bottom {
   padding: 15px
 }
 
-@media only screen and (-webkit-min-device-pixel-ratio: 1.5),
-only screen and (min--moz-device-pixel-ratio: 1.5),
-only screen and (min-device-pixel-ratio: 1.5) {
+@media only screen and (-webkit-min-device-pixel-ratio: 1.5), only screen and (min--moz-device-pixel-ratio: 1.5), only screen and (min-device-pixel-ratio: 1.5) {
   .go-pay-shop-list .shop {
     border-top-width: 1px
   }
@@ -1708,4 +1698,8 @@ only screen and (min-device-pixel-ratio: 1.5) {
   height: 50px;
   top: initial;
   bottom: 0px
+}
+
+.btn-2-1 {
+  width: 48.5%;
 }

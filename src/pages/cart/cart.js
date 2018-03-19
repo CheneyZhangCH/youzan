@@ -207,6 +207,7 @@ new Vue({
             this.removeShop()
           }
           this.removePopup = false
+          this.$refs[`goods-${shopIndex}-${goodsIndex}`][0].style.left = '0px'
         })
       } else {
         // 删除多个商品，需要删除的商品列表源自computed属性中removeLists

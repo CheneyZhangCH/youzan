@@ -6,6 +6,8 @@ import Vue from 'vue'
 import axios from 'axios'
 import mixin from 'js/mixin.js'
 import url from 'js/api.js'
+import Velocity from 'velocity-animate'
+
 
 new Vue({
   el: '.container',
@@ -16,6 +18,7 @@ new Vue({
     editingShopIndex: -1,
     removePopup: false,
     removeData: null,
+    removeMsg: '',
   },
   created() {
     this.getList()
@@ -160,29 +163,80 @@ new Vue({
         goods,
         goodsIndex
       }
+      this.removeMsg = '确定要删除该商品吗？'
+    },
+    removeList() {
+      this.removePopup = true
+      this.removeMsg = `确定将所选 ${this.removeLists.length} 个商品删除吗？`
     },
     removeConfirm() {
-      let {shop, shopIndex, goods, goodsIndex} = this.removeData
-      axios.post(url.cartRemove, {
-        id: goods.id,
-      }).then(res => {
-        shop.goodsList.splice(goodsIndex, 1)
-        if (!shop.goodsList.length) {
-          this.lists.splice(shopIndex, 1)
-          this.removeShop()
-        }
-        this.removePopup = false
-      })
+      // 删除单个商品
+      if (this.removeMsg === '确定要删除该商品吗？') {
+        let {shop, shopIndex, goods, goodsIndex} = this.removeData
+        axios.post(url.cartRemove, {
+          id: goods.id,
+        }).then(res => {
+          shop.goodsList.splice(goodsIndex, 1)
+          if (!shop.goodsList.length) {
+            this.lists.splice(shopIndex, 1)
+            this.removeShop()
+          }
+          this.removePopup = false
+        })
+      } else {
+        // 删除多个商品，需要删除的商品列表源自computed属性中removeLists
+        let ids = []
+        this.removeLists.forEach(goods => {
+          ids.push(goods.id)
+        })
+        axios.post(url.cartMRemove, {ids}).then(res => {
+          let arr = []
+          this.editingShop.goodsList.forEach(goods => {
+            let index = this.removeLists.findIndex(item => {
+              return item.id = goods.id
+            })
+            if (index === -1) {
+              arr.push(goods)
+            }
+          })
+          if (arr.length) {
+            this.editingShop.goodsList = arr
+          } else {
+            this.lists.splice(this.editingShopIndex, 1)
+            this.removeShop()
+          }
+          this.removePopup = false
+        })
+      }
+    },
+    removeCancel() {
+      this.removePopup = false
     },
     removeShop() {
       this.editingShop = null;
       this.editingShopIndex = -1;
       this.lists.forEach(shop => {
-        ;
         shop.editing = false
         shop.editingMsg = '编辑'
       })
-    }
+    },
+    start(e, goods) {
+      goods.startX = e.changedTouches[0].clientX
+    },
+    end(e, goods, goodsIndex, shopIndex) {
+      let endX = e.changedTouches[0].clientX
+      let left = '0'
+      if (goods.startX - endX > 100) {
+        left = '-60px'
+      }
+      if (endX - goods.startX > 100) {
+        left = '0px'
+      }
+      Velocity(this.$refs[`goods-${shopIndex}-${goodsIndex}`], {
+        left
+      })
+
+    },
   },
   mixins: [mixin],
 })

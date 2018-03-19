@@ -50,7 +50,10 @@
                 <ul class="js-list block block-list block-list-cart border-0">
                   <li class="block-item block-item-cart"
                       v-for="(goods, goodsIndex) in shop.goodsList"
-                      :class="{editing: shop.editing}">
+                      :class="{editing: shop.editing}"
+                      :ref="'goods-'+goodsIndex+'-'+shopIndex"
+                      @touchstart="start($event, goods)"
+                      @touchend="end($event, goods, goodsIndex, shopIndex)">
                     <div>
                       <div class="check-container" @click="selectGood(shop,goods)">
                         <span class="check" :class="{checked: goods.checked}"
@@ -191,7 +194,7 @@
                       :disabled="!removeLists.length"
                       class="j-delete-goods btn font-size-14 btn-red"
                       v-show="editingShop"
-                      @click="remove(shop, shopIndex, goods, goodsIndex)">删除
+                      @click="removeList">删除
               </button>
             </div>
           </div>
@@ -216,9 +219,10 @@
       </div>
       <hr style="margin:9px -15px 10px;">
       <div class="btn-2-1">
-        <p class="js-cancel center font-size-16" style="padding-top: 5px">取消</p>
+        <p class="js-cancel center font-size-16" style="padding-top: 5px"
+           @click="removeCancel">取消</p>
       </div>
-      <div class="btn-2-1">
+      <div class="btn-2-1" style="border-left: 1px solid  rgb(229,229,229);">
         <p class="js-ok center font-size-16" style="padding-top: 5px"
            @click="removeConfirm">确认</p>
       </div>

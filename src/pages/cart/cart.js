@@ -4,10 +4,13 @@ import './cart.css'
 
 import Vue from 'vue'
 import axios from 'axios'
-import mixin from 'js/mixin.js'
 import url from 'js/api.js'
+
+import mixin from 'js/mixin.js'
+
 import Velocity from 'velocity-animate'
 
+import Cart from 'js/cartService.js'
 
 new Vue({
   el: '.container',
@@ -91,20 +94,36 @@ new Vue({
   },
   methods: {
     getList() {
-      axios.post(url.cartLists).then(res => {
-        let lists = res.data.cartList
-        lists.forEach(shop => {
-          shop.checked = true
-          shop.removeChecked = false
-          shop.editing = false
-          shop.editingMsg = '编辑'
-          shop.goodsList.forEach(goods => {
-            goods.checked = true
-            goods.removeChecked = false
+      Cart.getList().then(
+        res => {
+          let lists = res.data.cartList
+          lists.forEach(shop => {
+            shop.checked = true
+            shop.removeChecked = false
+            shop.editing = false
+            shop.editingMsg = '编辑'
+            shop.goodsList.forEach(goods => {
+              goods.checked = true
+              goods.removeChecked = false
+            })
           })
-        })
-        this.lists = lists
-      })
+          this.lists = lists
+        }
+      )
+      // axios.post(url.cartLists).then(res => {
+      //   let lists = res.data.cartList
+      //   lists.forEach(shop => {
+      //     shop.checked = true
+      //     shop.removeChecked = false
+      //     shop.editing = false
+      //     shop.editingMsg = '编辑'
+      //     shop.goodsList.forEach(goods => {
+      //       goods.checked = true
+      //       goods.removeChecked = false
+      //     })
+      //   })
+      //   this.lists = lists
+      // })
     },
     selectGood(shop, goods) {
       let attr = this.editingShop ? 'removeChecked' : 'checked'
@@ -140,18 +159,24 @@ new Vue({
       if (goods.number === 1) {
         return
       }
-      axios.post(url.cartReduce, {
-        id: goods.id,
-        number: 1
-      }).then(res => {
+      Cart.reduce(goods.id).then(res => {
         goods.number--
       })
+      // axios.post(url.cartReduce, {
+      //   id: goods.id,
+      //   number: 1
+      // }).then(res => {
+      //   goods.number--
+      // })
     },
     add(goods) {
-      axios.post(url.cartAdd, {
-        id: goods.id,
-        number: 1,
-      }).then(res => {
+      // axios.post(url.cartAdd, {
+      //   id: goods.id,
+      //   number: 1,
+      // }).then(res => {
+      //   goods.number++
+      // })
+      Cart.add(goods.id).then(res => {
         goods.number++
       })
     },

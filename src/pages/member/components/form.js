@@ -6,8 +6,11 @@ export default {
       name: '',
       tel: '',
       provinceValue: -1,
+      // provinceName: '',
       cityValue: -1,
+      // cityName: '',
       districtValue: -1,
+      // districtName: '',
       address: '',
       id: '',
       type: '',
@@ -24,14 +27,12 @@ export default {
     // 如果是编辑地址，则先拿到编辑前的地址数据并进行渲染，显示在编辑页面
     if (this.type === 'edit') {
       let ad = this.instance
+      console.log(ad);
       this.provinceValue = parseInt(ad.provinceValue)
       this.name = ad.name
       this.tel = ad.tel
-      this.cityValue = ad.cityValue
       this.address = ad.address
       this.id = ad.id
-      this.cityValue = parseInt(this.instance.cityValue)
-      this.districtValue = parseInt(this.instance.districtValue)
     }
   },
   computed: {
@@ -40,8 +41,11 @@ export default {
     }
   },
   watch: {
-    lists() {
-      this.$router.go(-1)
+    lists: {
+      handler() {
+        this.$router.go(-1)
+      },
+      deep: true
     },
     provinceValue: function (val) {
       if (val === -1) {
@@ -54,6 +58,9 @@ export default {
       this.cityList = list[index].children;
       this.cityValue = -1;
       this.districtValue = -1;
+      if (this.type === 'edit') {
+        this.cityValue = parseInt(this.instance.cityValue)
+      }
     },
     cityValue: function (val) {
       if (val === -1) {
@@ -65,14 +72,41 @@ export default {
       })
       this.districtList = list[index].children
       this.districtValue = -1
-     }
+
+      if (this.type === 'edit') {
+        this.districtValue = parseInt(this.instance.districtValue)
+      }
+    }
   },
 
   methods: {
     add() {
       // 需要做合法性校验
       let {name, tel, provinceValue, cityValue, districtValue, address} = this
-      let data = {name, tel, provinceValue, cityValue, districtValue, address}
+      let provinceName = ''
+      let cityName = ''
+      let districtName = ''
+      this.addressData.list.forEach(province => {
+        if (province.value === provinceValue) {
+          provinceName = province.label
+          console.log(provinceName);
+          province.children.forEach(city => {
+            if (city.value === cityValue) {
+              cityName = city.label
+              console.log(this.cityName);
+              city.children.forEach(district => {
+                if (district.value === districtValue) {
+                  districtName = district.label
+                  console.log(this.districtName);
+                }
+              })
+            }
+          })
+        }
+      })
+
+      let data = {name, tel, provinceValue, cityValue, districtValue, address, provinceName, cityName, districtName}
+      console.log(data)
       if (this.type === 'add') {
         // Address.add(data).then(res => {
         //   this.$router.go(-1)
@@ -81,22 +115,25 @@ export default {
       }
       if (this.type === 'edit') {
         data.id = this.id
-        Address.update(data).then(res => {
-          this.$router.go(-1)
-        })
+        // Address.update(data).then(res => {
+        //   this.$router.go(-1)
+        // })
+        this.$store.dispatch('updateAddress', data)
       }
     },
     remove() {
       if (window.confirm('确认删除该地址嘛')) {
-        Address.remove(this.id).then(res => {
-          this.$router.go(-1)
-        })
+        // Address.remove(this.id).then(res => {
+        //   this.$router.go(-1)
+        // })
+        this.$store.dispatch('removeAddress', this.id)
       }
     },
     setDefault() {
-      Address.setDefaule(this.id).then(res => {
-        this.$router.go(-1)
-      })
+      // Address.setDefaule(this.id).then(res => {
+      //   this.$router.go(-1)
+      // })
+      this.$store.dispatch('setDefaultAddress', this.id)
     }
   }
 }

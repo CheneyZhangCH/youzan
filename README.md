@@ -9,7 +9,7 @@ API接口采用阿里RAP在线模拟
 
 
 
-地址管理使用 vue-router
+地址管理使用 vue-router及vuex
 
 
 

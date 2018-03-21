@@ -1,4 +1,17 @@
-# youzan
+## vue多页面应用重构有赞商城
+
+技术栈： vue， vue-router， vuex， axios，
+
+顶部轮播及商品信息图片轮播采用swiper组件抽离
+
+
+API接口采用阿里RAP在线模拟
+
+
+
+地址管理使用 vue-router
+
+
 
 > A Vue.js project
 

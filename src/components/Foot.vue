@@ -37,7 +37,7 @@
     {
       name: '我',
       icon: 'icon-user',
-      href: 'member.vue'
+      href: 'member.html'
     },
   ]
 

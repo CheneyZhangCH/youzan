@@ -29,19 +29,29 @@
 </style>
 
 <script>
-  import Address from 'js/addressService.js'
+  //  import Address from 'js/addressService.js'
 
   export default {
     data() {
       return {
-        lists: null,
+        //  lists: null,
+      }
+    },
+    computed: {
+      lists() {
+        return this.$store.state.lists
       }
     },
     created() {
       // 异步请求
-      Address.list().then(res => {
-        this.lists = res.data.lists
-      })
+      // Address.list().then(res => {
+      //   this.lists = res.data.lists
+      // })
+
+      // action 分发
+      if (!this.lists) {
+        this.$store.dispatch('getList')
+      }
     },
     methods: {
       toEdit(list) {

@@ -13,6 +13,8 @@
 
 API接口采用阿里RAP在线模拟
 
+由于阿里RAP不支持HTTPS协议，请clone到本地预览~~
+
 
 > A Vue.js project
 

@@ -2,15 +2,16 @@
 
 技术栈： vue， vue-router， vuex， axios，
 
+地址管理使用 vue-router及vuex
+
+
+首页、分类页、购物车及个人中心均采用多页面应用构建
+
+
 顶部轮播及商品信息图片轮播采用swiper组件抽离
 
 
 API接口采用阿里RAP在线模拟
-
-
-
-地址管理使用 vue-router及vuex
-
 
 
 > A Vue.js project
